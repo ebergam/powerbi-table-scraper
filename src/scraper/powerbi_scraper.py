@@ -89,6 +89,7 @@ class PowerBiScraper:
         # find_elementS to avoid exception if no iframe found
         iframes = self._driver.find_elements(By.CSS_SELECTOR, "iframe")
         logger.debug(f"Found {len(iframes)} iframes")
+
         if iframes:
             iframe = iframes[0]
 

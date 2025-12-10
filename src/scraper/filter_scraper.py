@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 logger = logging.getLogger(__name__)
 
 # CSS selectors
-FILTER_CSS_SELECTOR = 'div[role="listbox"]'
+FILTER_CSS_SELECTOR = 'div[role="combobox"]'
 CHECKED_FILTER_CSS_SELECTOR = 'div[aria-checked="true"]'
 UNCHECKED_FILTER_CSS_SELECTOR = 'div[aria-checked="false"]'
 

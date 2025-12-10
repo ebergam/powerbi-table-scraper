@@ -15,12 +15,24 @@ logger = logging.getLogger(__name__)
 
 # CSS selectors
 TABLE_CSS_SELECTOR = ".tableEx"
-HEADER_ROW_CSS_SELECTOR = "div.main-cell[role='columnheader']"
+HEADER_ROW_CSS_SELECTOR = "div[role='columnheader']"
 DATA_CONTAINER_CSS_SELECTOR = ".mid-viewport > div:nth-child(1)"
 ROWS_CSS_SELECTOR = "div[role='row'][row-index]"
 ROW_INDEX_ATTRIBUTE = "row-index"
 ROW_DATA_CELL_CSS_SELECTOR = ".main-cell"
 TABLE_SCROLLBAR_CSS_SELECTOR = "div.scroll-bar-part-bar"
+
+
+# CSS selectors (UPDATED)
+# TABLE_CSS_SELECTOR = "div[mid-viewport]"                # generic viewport for table/matrix
+# TABLE_CSS_SELECTOR = "div[role='grid']"
+# HEADER_ROW_CSS_SELECTOR = "div[role='columnheader']"    # still OK
+# DATA_CONTAINER_CSS_SELECTOR = "div[mid-viewport]"       # safer than nth-child
+# ROWS_CSS_SELECTOR = "div[role='row'][data-row-index]"   # updated attribute name
+# ROW_INDEX_ATTRIBUTE = "data-row-index"                  # changed in new Power BI visuals
+# ROW_DATA_CELL_CSS_SELECTOR = "div.main-cell"            # updated container for data cell
+# TABLE_SCROLLBAR_CSS_SELECTOR = "div.scroll-bar-part-bar" # often still works, but may need fallback
+
 
 
 class TableScraper:
@@ -99,6 +111,8 @@ class TableScraper:
         logger.debug(
             f"Scraping complete. Rows: {len(table_rows)}, Columns: {len(column_headers)}"
         )
+
+        column_headers = column_headers[1:]
 
         return pd.DataFrame(table_rows, columns=column_headers)
 
